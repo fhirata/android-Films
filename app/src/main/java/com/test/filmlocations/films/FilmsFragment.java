@@ -54,7 +54,7 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mFilmsRecyclerView = (RecyclerView) view.findViewById(R.id.films_recyclerview);
         mFilmsRecyclerView.setLayoutManager(layoutManager);
-        mFilmsAdapter = new FilmsAdapter();
+        mFilmsAdapter = new FilmsAdapter(mPresenterInterface);
         mFilmsRecyclerView.setAdapter(mFilmsAdapter);
 
         return view;
@@ -75,12 +75,22 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
         mPresenterInterface = presenter;
     }
 
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
+
 
     /**
      * Adapter for film results recycler view
      */
     private static class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.ViewHolder> {
         private List<FilmLocationItem> mFilmLocationItems;
+        FilmsContract.PresenterInterface mPresenterInterface;
+
+        public FilmsAdapter(FilmsContract.PresenterInterface presenterInterface) {
+            mPresenterInterface = presenterInterface;
+        }
 
         void updateData(List<FilmLocationItem> itemList) {
             mFilmLocationItems = itemList;
@@ -105,10 +115,13 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
             holder.mTitle.setText(filmItem.getTitle());
             holder.mDate.setText(filmItem.getReleaseYear());
             holder.mLocation.setText(filmItem.getLocations());
+            holder.attachClickHandler(filmItem.getId(), filmItem.getTitle());
 
-            Glide.with(holder.itemView.getContext())
-            .load(mFilmLocationItems.get(position).getPosterPath())
-            .into(holder.mFilmImage);
+            if (null != mFilmLocationItems.get(position).getPosterPath()) {
+                Glide.with(holder.itemView.getContext())
+                        .load(mFilmLocationItems.get(position).getPosterPath())
+                        .into(holder.mFilmImage);
+            }
         }
 
         @Override
@@ -120,7 +133,7 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
             return 0;
         }
 
-        static class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder {
             TextView mTitle;
             ImageView mFilmImage;
             TextView mLocation;
@@ -133,6 +146,16 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
                 mTitle = (TextView) itemView.findViewById(R.id.title_textview);
                 mDate = (TextView) itemView.findViewById(R.id.release_year_textview);
                 mLocation = (TextView) itemView.findViewById(R.id.location_textview);
+            }
+
+            public void attachClickHandler(final Integer filmId, final String title) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mPresenterInterface.handleClick(filmId, title);
+                    }
+                });
+
             }
         }
     }

@@ -13,7 +13,7 @@ import java.util.List;
 public interface FilmsContract {
 
     interface PresenterInterface extends BasePresenterInterface {
-
+        void handleClick(Integer filmId, String title);
     }
 
     interface ViewInterface extends BaseViewInterface<PresenterInterface> {
@@ -23,5 +23,6 @@ public interface FilmsContract {
 
     interface ActivityInterface {
         void showErrorMessage(int messageResourceId);
+        void launchFilmLocationDetail(Integer filmId, String title);
     }
 }

@@ -18,5 +18,13 @@ public interface FilmsDataSource extends BaseDataSource {
         void onDataNotAvailable(FilmsDataSourceErrorInterface errorMessage);
     }
 
+    interface GetFilmDetailCallback {
+        void onFilmLoaded(@NonNull FilmLocationItem filmLocationItem);
+
+        void onDataNotAvailable(FilmsDataSourceErrorInterface errorInterface);
+    }
+
     void getFilmLocations(final int limit, final int offset, @NonNull GetFilmsCallback callback);
+
+    void getFilmLocationById(@NonNull Integer filmId, @NonNull GetFilmDetailCallback callback);
 }
