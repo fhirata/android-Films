@@ -11,6 +11,7 @@ public class FilmsDataSourceError implements FilmsDataSourceErrorInterface {
 
     public final static int INVALID_KEY = 7;
 
+    public final static int CACHE_MISS_ERROR = 1001;
     private int mErrorCode;
 
     private String mMessage;

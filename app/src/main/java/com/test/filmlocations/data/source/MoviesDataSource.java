@@ -16,5 +16,5 @@ public interface MoviesDataSource extends BaseDataSource {
         void onDataNotAvailable(@NonNull FilmsDataSourceErrorInterface dataSourceError);
     }
 
-    void getMovieDetail(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, @NonNull final GetMovieDetailCallback callback);
+    void searchMovieByTitle(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, @NonNull final GetMovieDetailCallback callback);
 }

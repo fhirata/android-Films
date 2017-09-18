@@ -19,7 +19,7 @@ public class LocalMoviesRepository implements MoviesDataSource {
     }
 
     @Override
-    public void getMovieDetail(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, @NonNull GetMovieDetailCallback callback) {
+    public void searchMovieByTitle(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, @NonNull GetMovieDetailCallback callback) {
         // no-op - local storage not implemented yet.
     }
 }
