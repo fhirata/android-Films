@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Film Locations</string>
+    <string name="film_locations_title">Film Locations</string>
+    <string name="retrofit_fetch_error">Unable to fetch data API.  Check your connection and try again.</string>
+</resources>
