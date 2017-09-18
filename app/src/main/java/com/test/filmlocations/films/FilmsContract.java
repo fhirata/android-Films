@@ -18,6 +18,7 @@ public interface FilmsContract {
 
     interface ViewInterface extends BaseViewInterface<PresenterInterface> {
         void updateFilms(List<FilmLocationItem> itemList);
+        void updateFilmItemPoster(int index, String posterPath);
     }
 
     interface ActivityInterface {

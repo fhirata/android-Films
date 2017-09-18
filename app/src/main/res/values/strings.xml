@@ -2,4 +2,7 @@
     <string name="app_name">Film Locations</string>
     <string name="film_locations_title">Film Locations</string>
     <string name="retrofit_fetch_error">Unable to fetch data API.  Check your connection and try again.</string>
+    <string name="invalid_api_key_error">Invalid API key: You must be granted a valid key.</string>
+    <string name="unknown_release_year">(Unknown)</string>
+    <string name="language">en-US</string>
 </resources>

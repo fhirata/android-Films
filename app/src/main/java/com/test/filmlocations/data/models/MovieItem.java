@@ -2,10 +2,14 @@ package com.test.filmlocations.data.models;
 
 import android.util.Log;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Models information about a Movie that complements the item in the list and detail screen.
@@ -15,112 +19,146 @@ public class MovieItem {
 
     private static String TAG = MovieItem.class.getSimpleName();
 
-    private String mName;
-    private String mImgUrl;
-    private String mDescription;
-    private int mVoteCount;
-    private double mVoteAverage;
-    private Date mReleaseDate;
-    private int mDuration;
-    private String mBackDropUrl;
-    private long mMovieId;
+    @SerializedName("vote_average")
+    @Expose
+    public Double mVoteAverage;
+    @SerializedName("vote_count")
+    @Expose
+    public Integer mVoteCount;
+    @SerializedName("id")
+    @Expose
+    public Integer mId;
+    @SerializedName("video")
+    @Expose
+    public Boolean mVideo;
+    @SerializedName("media_type")
+    @Expose
+    public String mMediaType;
+    @SerializedName("title")
+    @Expose
+    public String mTitle;
+    @SerializedName("popularity")
+    @Expose
+    public Double mPopularity;
+    @SerializedName("poster_path")
+    @Expose
+    public String mPosterPath;
+    @SerializedName("original_language")
+    @Expose
+    public String mOriginalLanguage;
+    @SerializedName("original_title")
+    @Expose
+    public String mOriginalTitle;
+    @SerializedName("genre_ids")
+    @Expose
+    public List<Integer> mGenreIds = null;
+    @SerializedName("backdrop_path")
+    @Expose
+    public String mBackdropPath;
+    @SerializedName("adult")
+    @Expose
+    public Boolean mAdult;
+    @SerializedName("overview")
+    @Expose
+    public String mOverview;
+    @SerializedName("release_date")
+    @Expose
+    public String mReleaseDateStr;
+
+    private transient Date mReleaseDate;
 
     static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
     static SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-
-
+    
     public MovieItem() {
         Log.d(TAG, "MovieItem() called");
     }
 
-    public void setName(String name) {
-        mName = name;
-    }
-
-    public String getName() {
-        return mName;
-    }
-
+    /**
+     *
+     * @return if Unknown, returns empty
+     */
     public String getReleaseDate() {
         if (mReleaseDate != null) {
             return dateFormat.format(mReleaseDate);
         }
-        return "(Unknown)";
+        return "";
     }
 
+    /**
+     *
+     * @return if Unknown, returns empty
+     */
     public String getReleaseYear() {
         if (mReleaseDate != null) {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(mReleaseDate);
             return String.valueOf(calendar.get(Calendar.YEAR));
         }
-        return "(Unknown)";
+        return "";
     }
-
 
     public void setReleaseDate(String releaseDate) {
         try {
-
             mReleaseDate = dateFormat.parse(releaseDate);
         } catch (ParseException dpe) {
             Log.e(TAG, "Failed to parse full date: " + dpe.getMessage());
         }
     }
 
-    public String getBackDropUrl() {
-        return mBackDropUrl;
+    public Double getVoteAverage() {
+        return mVoteAverage;
     }
 
-    public void setBackDropUrl(String mBackDrop) {
-        mBackDropUrl = mBackDrop;
+    public Integer getVoteCount() {
+        return mVoteCount;
     }
 
-    public String getImgUrl() {
-        return mImgUrl;
+    public Integer getId() {
+        return mId;
     }
 
-    public void setImgUrl(String imgUrl) {
-        mImgUrl = imgUrl;
+    public Boolean getVideo() {
+        return mVideo;
     }
 
-    public String getDescription() {
-        return mDescription;
+    public String getMediaType() {
+        return mMediaType;
     }
 
-    public void setDescription(String description) {
-        mDescription = description;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public String getVoteCount() {
-        return String.valueOf(mVoteCount);
+    public Double getPopularity() {
+        return mPopularity;
     }
 
-    public void setVoteCount(String voteCount) {
-        mVoteCount = Integer.valueOf(voteCount);
+    public String getPosterPath() {
+        return mPosterPath;
     }
 
-    public String getAverageVote() {
-        return String.valueOf(mVoteAverage);
+    public String getOriginalLanguage() {
+        return mOriginalLanguage;
     }
 
-    public void setAverageVote(String averageVote) {
-        mVoteAverage = Double.valueOf(averageVote);
+    public String getOriginalTitle() {
+        return mOriginalTitle;
     }
 
-    public int getDuration() {
-        return mDuration;
+    public List<Integer> getGenreIds() {
+        return mGenreIds;
     }
 
-    public void setDuration(int mDuration) {
-        mDuration = mDuration;
+    public String getBackdropPath() {
+        return mBackdropPath;
     }
 
-    public long getMovieId() {
-        return mMovieId;
+    public Boolean getAdult() {
+        return mAdult;
     }
 
-    public void setMovieId(long movieId) {
-        Log.d(TAG, "setMovieId() called with: movieId = [" + movieId + "]");
-        mMovieId = movieId;
+    public String getOverview() {
+        return mOverview;
     }
 }

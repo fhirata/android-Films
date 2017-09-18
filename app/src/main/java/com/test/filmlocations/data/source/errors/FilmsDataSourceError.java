@@ -9,6 +9,8 @@ public class FilmsDataSourceError implements FilmsDataSourceErrorInterface {
     // Parsing or issue retrieving data from Retrofit
     public final static int RETROFIT_ERROR = 1000;
 
+    public final static int INVALID_KEY = 7;
+
     private int mErrorCode;
 
     private String mMessage;

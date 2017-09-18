@@ -46,9 +46,9 @@ public class FilmsRepository implements FilmsDataSource {
             }
         });
     }
-
-    @Override
-    public void getFilmLocationDetail(@NonNull String filmId, @NonNull GetFilmDetailCallback callback) {
-
-    }
+//
+//    @Override
+//    public void getFilmLocationDetail(@NonNull String filmId, @NonNull GetFilmDetailCallback callback) {
+//
+//    }
 }

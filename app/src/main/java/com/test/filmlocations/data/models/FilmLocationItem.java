@@ -51,6 +51,8 @@ public class FilmLocationItem {
     @Expose
     private String mUpdatedMeta;
 
+    private transient String mPosterPath;
+
     /**
      * No args constructor for use in serialization
      */
@@ -144,5 +146,13 @@ public class FilmLocationItem {
 
     public String getUpdatedMeta() {
         return mUpdatedMeta;
+    }
+
+    public void setPosterPath(String posterPath) {
+        mPosterPath = posterPath;
+    }
+
+    public String getPosterPath() {
+        return mPosterPath;
     }
 }
