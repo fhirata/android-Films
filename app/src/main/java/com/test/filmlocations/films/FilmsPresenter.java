@@ -22,7 +22,7 @@ import static com.test.filmlocations.data.source.errors.FilmsDataSourceError.RET
  */
 
 public class FilmsPresenter implements FilmsContract.PresenterInterface {
-    private final int DEFAULT_FETCH_COUNT = 20;
+    private final int DEFAULT_FETCH_COUNT = 35;
     private FilmsContract.ActivityInterface mActivityInterface;
     private FilmsContract.ViewInterface mViewInterface;
     private String mApiKey;

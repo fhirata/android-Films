@@ -80,6 +80,17 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
         return isAdded();
     }
 
+//TODO: Add Settings for Toggling Sort feature
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        switch (id) {
+//            case R.id.action_filter:
+//                mSortDialog = SortReleaseDialogFragment.newInstance();
+//                mSortDialog.setSortReleaseDialogListener(this);
+//                return;
+//        }
+//    }
 
     /**
      * Adapter for film results recycler view

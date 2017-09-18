@@ -12,4 +12,8 @@
     <string name="location">Location</string>
     <string name="fun_fact">Fun Fact About This Location</string>
     <string name="actors">Actors</string>
+    <string name="sort_by">Sort By</string>
+    <string name="release_year">Release Year</string>
+    <string name="old_new">Older to Newer</string>
+    <string name="new_old">Newer to Older</string>
 </resources>

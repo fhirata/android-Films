@@ -4,4 +4,8 @@
     <dimen name="section_medium_text_size">23sp</dimen>
     <dimen name="section_medium_small_text_size">17sp</dimen>
     <dimen name="bottom_margin_film_detail_sections">15dp</dimen>
+    <dimen name="margin_filter_dialog">24dp</dimen>
+    <dimen name="margin_filter_bottom_dialog">10dp</dimen>
+    <dimen name="switch_button_height">35dp</dimen>
+    <dimen name="font_size_extra_small">13sp</dimen>
 </resources>
