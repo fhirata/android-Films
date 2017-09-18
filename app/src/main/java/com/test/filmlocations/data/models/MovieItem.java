@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.test.filmlocations.BuildConfig;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -135,7 +136,7 @@ public class MovieItem {
     }
 
     public String getPosterPath() {
-        return mPosterPath;
+        return BuildConfig.POSTER_BASE_URL + mPosterPath;
     }
 
     public String getOriginalLanguage() {

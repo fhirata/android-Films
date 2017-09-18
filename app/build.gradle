@@ -18,6 +18,7 @@ android {
 
             buildConfigField "String", "FILMS_API_BASE_URL", '"https://data.sfgov.org/"'
             buildConfigField "String", "MOVIES_API_BASE_URL", '"http://api.themoviedb.org/"'
+            buildConfigField "String", "POSTER_BASE_URL", '"http://image.tmdb.org/t/p/w185"'
         }
 
         debug {
@@ -26,6 +27,7 @@ android {
 
             buildConfigField "String", "FILMS_API_BASE_URL", '"https://data.sfgov.org/"'
             buildConfigField "String", "MOVIES_API_BASE_URL", '"http://api.themoviedb.org/"'
+            buildConfigField "String", "POSTER_BASE_URL", '"http://image.tmdb.org/t/p/w185"'
         }
     }
 }

@@ -54,4 +54,4 @@ captures/
 # Application signing information for signing release apks
 # Commenting it out for Udacity review
 
-
+app/src/main/res/values/keys.xml

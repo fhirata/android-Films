@@ -1,37 +1,29 @@
 package com.test.filmlocations.data.models;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Parses a Movie json
  */
 
 public class MovieApiResponse {
-
-    Map mData;
+    @SerializedName("page")
+    @Expose
+    public Integer mPage;
+    @SerializedName("total_results")
+    @Expose
+    public Integer mTotalResults;
+    @SerializedName("total_pages")
+    @Expose
+    public Integer mTotalPages;
+    @SerializedName("results")
+    @Expose
+    public List<MovieItem> mResults = null;
 
     public List<MovieItem> makeMovieItems() {
-        Gson gson = new Gson();
-        String json = gson.toJson(mData);
-        JsonObject jsonObject = gson.fromJson(json, JsonObject.class);
-
-        List<MovieItem> movieItemList = null;
-
-        try {
-            JsonArray movieResults = jsonObject.get("results").getAsJsonArray();
-            for (int i=0; i< movieItemList.size(); i++) {
-                MovieItem item = gson.fromJson(movieResults.get(i), MovieItem.class);
-                movieItemList.add(item);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return movieItemList;
+        return mResults;
     }
 }
