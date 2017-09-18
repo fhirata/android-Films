@@ -3,6 +3,9 @@ package com.test.filmlocations.data.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a film item
  */
@@ -154,5 +157,19 @@ public class FilmLocationItem {
 
     public String getPosterPath() {
         return mPosterPath;
+    }
+
+    public List<String> getActors() {
+        ArrayList<String> actors = new ArrayList<>();
+        if (null != mActor1) {
+            actors.add(mActor1);
+        }
+        if (null != mActor2) {
+            actors.add(mActor2);
+        }
+        if (null != mActor3) {
+            actors.add(mActor3);
+        }
+        return actors;
     }
 }

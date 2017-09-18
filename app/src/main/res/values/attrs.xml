@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FilmsSwitch">
+        <attr name="optionOneText" format="string" />
+        <attr name="optionTwoText" format="string" />
+    </declare-styleable>
+</resources>

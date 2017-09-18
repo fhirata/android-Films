@@ -91,4 +91,9 @@ public class RemoteFilmsRepository implements FilmsDataSource {
             }
         });
     }
+
+    @Override
+    public void getFilmLocationById(@NonNull Integer filmId, @NonNull GetFilmDetailCallback callback) {
+        // no-op - relying on cache (not ideal, but for a quick view should be ok since we need to fetch it and store first)
+    }
 }

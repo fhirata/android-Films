@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">Film Locations</string>
+    <string name="film_location_title_detail">Detail</string>
     <string name="film_locations_title">Film Locations</string>
     <string name="retrofit_fetch_error">Unable to fetch data API.  Check your connection and try again.</string>
     <string name="invalid_api_key_error">Invalid API key: You must be granted a valid key.</string>
+    <string name="cache_miss_error">Film information not found (cache miss)</string>
     <string name="unknown_release_year">(Unknown)</string>
     <string name="language">en-US</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="san_francisco_ca">San Francisco, CA</string>
+    <string name="location">Location</string>
+    <string name="fun_fact">Fun Fact About This Location</string>
+    <string name="actors">Actors</string>
+    <string name="sort_by">Sort By</string>
+    <string name="release_year">Release Year</string>
+    <string name="old_new">Older to Newer</string>
+    <string name="new_old">Newer to Older</string>
 </resources>

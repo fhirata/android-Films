@@ -32,12 +32,12 @@ public class MoviesRepository implements MoviesDataSource {
     }
 
     @Override
-    public void getMovieDetail(final int index, @NonNull String apiKey, @NonNull String language, @NonNull final String movieTitle, @NonNull final GetMovieDetailCallback callback) {
+    public void searchMovieByTitle(final int index, @NonNull String apiKey, @NonNull String language, @NonNull final String movieTitle, @NonNull final GetMovieDetailCallback callback) {
         if (sMovieCache.containsKey(movieTitle)) {
             callback.onMovieDetailLoaded(sMovieCache.get(movieTitle), index);
             return;
         }
-        mRemoteMoviesRepository.getMovieDetail(index, apiKey, language, movieTitle, new GetMovieDetailCallback() {
+        mRemoteMoviesRepository.searchMovieByTitle(index, apiKey, language, movieTitle, new GetMovieDetailCallback() {
             @Override
             public void onMovieDetailLoaded(@NonNull MovieItem movieItem, int index) {
                 if (!sMovieCache.containsKey(movieTitle)) {

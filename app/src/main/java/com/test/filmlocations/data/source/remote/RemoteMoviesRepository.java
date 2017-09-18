@@ -66,7 +66,7 @@ public class RemoteMoviesRepository implements MoviesDataSource {
     }
 
     @Override
-    public void getMovieDetail(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, final @NonNull GetMovieDetailCallback callback) {
+    public void searchMovieByTitle(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, final @NonNull GetMovieDetailCallback callback) {
         Call<MovieApiResponse> call = mMoviesInterface.searchMovies(apiKey, movieTitle, language);
         call.enqueue(new Callback<MovieApiResponse>() {
             @Override

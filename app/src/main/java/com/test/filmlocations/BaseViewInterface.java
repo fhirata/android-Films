@@ -6,4 +6,5 @@ package com.test.filmlocations;
 
 public interface BaseViewInterface<V extends BasePresenterInterface> {
     void setPresenter(V presenter);
+    boolean isActive();
 }
