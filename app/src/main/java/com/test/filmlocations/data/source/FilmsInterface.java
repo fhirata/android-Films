@@ -15,4 +15,9 @@ import retrofit2.http.Query;
 public interface FilmsInterface {
     @GET("/resource/yitu-d5am.json?$$exclude_system_fields=false")
     Call<List<FilmLocationItem>> getFilms(@Query("$limit") int limit, @Query("$offset") int offset);
+
+
+// To apply sort based on release year, use the following parameters
+//    https://data.sfgov.org/resource/yitu-d5am.json?$$exclude_system_fields=false&$limit=20&$offset=0&$order=release_year%20DESC
+
 }
