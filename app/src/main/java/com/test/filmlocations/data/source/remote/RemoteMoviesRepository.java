@@ -3,9 +3,10 @@ package com.test.filmlocations.data.source.remote;
 import android.support.annotation.NonNull;
 
 import com.test.filmlocations.BuildConfig;
-import com.test.filmlocations.data.models.FilmLocationItem;
-import com.test.filmlocations.data.source.FilmsDataSource;
-import com.test.filmlocations.data.source.FilmsInterface;
+import com.test.filmlocations.data.models.MovieApiResponse;
+import com.test.filmlocations.data.models.MovieItem;
+import com.test.filmlocations.data.source.MoviesDataSource;
+import com.test.filmlocations.data.source.MoviesInterface;
 import com.test.filmlocations.data.source.errors.FilmsDataSourceError;
 
 import java.io.IOException;
@@ -23,28 +24,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static com.test.filmlocations.data.source.errors.FilmsDataSourceError.RETROFIT_ERROR;
 
 /**
- * Remote repository for fetching films from network
+ * Fetches Movies information the api.themoviedb.org
  */
 
-public class RemoteFilmsRepository implements FilmsDataSource {
-    private static final int READ_TIMEOUT = 10;
-    private static final int WRITE_TIMEOUT = 10;
-    private static final int CONNECT_TIMEOUT = 10;
-    private static RemoteFilmsRepository sRemoteFilmsRepository;
+public class RemoteMoviesRepository implements MoviesDataSource {
 
-    private FilmsInterface mFilmsInterface;
+    private static RemoteMoviesRepository sRemoteMoviesRepository;
 
-    private static final String BASE_URL = BuildConfig.FILMS_API_BASE_URL;
+    private MoviesInterface mMoviesInterface;
 
-    public static RemoteFilmsRepository getInstance() {
-        if (null == sRemoteFilmsRepository) {
-            sRemoteFilmsRepository = new RemoteFilmsRepository();
+    private static final String BASE_URL = BuildConfig.MOVIES_API_BASE_URL;
+
+    public static RemoteMoviesRepository getInstance() {
+        if (null == sRemoteMoviesRepository) {
+            sRemoteMoviesRepository = new RemoteMoviesRepository();
         }
 
-        return sRemoteFilmsRepository;
+        return sRemoteMoviesRepository;
     }
 
-    private RemoteFilmsRepository() {
+    private RemoteMoviesRepository() {
         OkHttpClient.Builder clientBuilder = new OkHttpClient()
                 .newBuilder()
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
@@ -63,30 +62,30 @@ public class RemoteFilmsRepository implements FilmsDataSource {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
-        mFilmsInterface = retrofit.create(FilmsInterface.class);
+        mMoviesInterface = retrofit.create(MoviesInterface.class);
     }
 
     @Override
-    public void getFilmLocations(int limit, int offset, @NonNull final GetFilmsCallback callback) {
-        Call<List<FilmLocationItem>> call = mFilmsInterface.getFilms(limit, offset);
-        call.enqueue(new Callback<List<FilmLocationItem>>() {
+    public void getMovieDetail(final int index, @NonNull String apiKey, @NonNull String language, @NonNull String movieTitle, final @NonNull GetMovieDetailCallback callback) {
+        Call<MovieApiResponse> call = mMoviesInterface.searchMovies(apiKey, movieTitle, language);
+        call.enqueue(new Callback<MovieApiResponse>() {
             @Override
-            public void onResponse(Call<List<FilmLocationItem>> call, Response<List<FilmLocationItem>> response) {
+            public void onResponse(Call<MovieApiResponse> call, Response<MovieApiResponse> response) {
                 if (response.isSuccessful()) {
-                    List<FilmLocationItem> filmResponse = response.body();
-                    callback.onFilmsLoaded(filmResponse);
+                    MovieApiResponse movieApiResponse = response.body();
+                    List<MovieItem> movieResponse = movieApiResponse.makeMovieItems();
+                    callback.onMovieDetailLoaded(movieResponse.get(0), index);
                 } else {
                     try {
                         callback.onDataNotAvailable(new FilmsDataSourceError(response.code(), response.errorBody().string()));
                     } catch (IOException e) {
-                        callback.onDataNotAvailable(new FilmsDataSourceError(response.code(), "Error with Retrofit fetch."));
+                        callback.onDataNotAvailable(new FilmsDataSourceError(response.code(), "Error fetching movie detail via Retrofit."));
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<FilmLocationItem>> call, Throwable t) {
+            public void onFailure(Call<MovieApiResponse> call, Throwable t) {
                 callback.onDataNotAvailable(new FilmsDataSourceError(RETROFIT_ERROR, t.getMessage()));
             }
         });

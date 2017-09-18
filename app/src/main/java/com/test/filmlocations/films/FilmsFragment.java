@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.test.filmlocations.R;
 import com.test.filmlocations.data.models.FilmLocationItem;
 
@@ -65,6 +66,11 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
     }
 
     @Override
+    public void updateFilmItemPoster(int index, String posterPath) {
+        mFilmsAdapter.updateFilmItemData(index, posterPath);
+    }
+
+    @Override
     public void setPresenter(FilmsContract.PresenterInterface presenter) {
         mPresenterInterface = presenter;
     }
@@ -81,6 +87,11 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
             notifyDataSetChanged();
         }
 
+        void updateFilmItemData(int index, String posterPath) {
+            mFilmLocationItems.get(index).setPosterPath(posterPath);
+            notifyItemChanged(index);
+        }
+
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.film_item, parent, false);
@@ -95,9 +106,9 @@ public class FilmsFragment extends Fragment implements FilmsContract.ViewInterfa
             holder.mDate.setText(filmItem.getReleaseYear());
             holder.mLocation.setText(filmItem.getLocations());
 
-//            Glide.with(holder.itemView.getContext())
-//            .load(mFilmLocationItems.get(position).getBackgroundUrl())
-//            .into(holder.mFilmImage);
+            Glide.with(holder.itemView.getContext())
+            .load(mFilmLocationItems.get(position).getPosterPath())
+            .into(holder.mFilmImage);
         }
 
         @Override

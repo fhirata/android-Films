@@ -29,7 +29,15 @@ public class MainActivity extends AppCompatActivity implements FilmsContract.Act
         setContentView(R.layout.activity_films_results);
 
         FilmsFragment filmsFragment = FilmsFragment.getInstance();
-        new FilmsPresenter(filmsFragment, this, Injection.provideFilmsRepository());
+
+        new FilmsPresenter(
+                filmsFragment,
+                this,
+                Injection.provideFilmsRepository(),
+                Injection.provideMoviesRepository(),
+                getString(R.string.movies_api_key),
+                getString(R.string.language)
+        );
 
         mSnackbarLayout = (CoordinatorLayout) findViewById(R.id.snackbar_layout);
 

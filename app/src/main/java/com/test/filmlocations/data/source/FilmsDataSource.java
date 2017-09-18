@@ -11,20 +11,12 @@ import java.util.List;
  *  Specifies the behavior of the films repository classes
  */
 
-public interface FilmsDataSource {
+public interface FilmsDataSource extends BaseDataSource {
     interface GetFilmsCallback {
         void onFilmsLoaded(@NonNull List<FilmLocationItem> filmList);
 
         void onDataNotAvailable(FilmsDataSourceErrorInterface errorMessage);
     }
 
-    interface GetFilmDetailCallback {
-        void onFilmDetailLoaded(@NonNull FilmLocationItem filmLocationItem);
-
-        void onDataNotAvailable(@NonNull FilmsDataSourceErrorInterface dataSourceError);
-    }
-
     void getFilmLocations(final int limit, final int offset, @NonNull GetFilmsCallback callback);
-
-    void getFilmLocationDetail(@NonNull String filmId, @NonNull GetFilmDetailCallback callback);
 }

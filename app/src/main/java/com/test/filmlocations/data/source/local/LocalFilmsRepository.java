@@ -20,11 +20,6 @@ public class LocalFilmsRepository implements FilmsDataSource {
 
     @Override
     public void getFilmLocations(final int limit, final int offset, @NonNull GetFilmsCallback callback) {
-
-    }
-
-    @Override
-    public void getFilmLocationDetail(@NonNull String filmId, @NonNull GetFilmDetailCallback callback) {
-
+        // no-op - no local storage for film locations yet
     }
 }
